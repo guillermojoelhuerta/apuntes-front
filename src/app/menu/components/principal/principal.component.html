@@ -1,0 +1,50 @@
+<!--<div style="float: left;">
+<div class="container">
+  <div class="dropdown">
+    <button class="btn btn-primary dropdown-toggle" type="button" id="dropdown1" data-bs-toggle="dropdown">
+      Apuntes
+    </button>
+    <div class="dropdown-menu">
+      <a class="dropdown-item" [routerLink]="['/apuntes/todos']">Todos apuntes</a>
+      <a class="dropdown-item" [routerLink]="['/apuntes/crear']">Crear apuntes</a>
+      <a class="dropdown-item" [routerLink]="['/apuntes/actualizar']">Actualizar apuntes</a>
+    </div>                
+  </div>  
+</div>       
+</div>-->
+
+<nav class="navbar navbar-expand-lg bg-light">
+  <div class="container-fluid">
+    <!--<a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>-->      
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item">       
+          <a class="nav-link active" aria-current="page" [routerLink]="['/apuntes/todos']">Home</a>
+        </li>     
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categorias
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/categorias/todos']">Todas las categorías</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/categorias/crear']">Crear Categoría</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/categorias/actualizar']">Actualizar Categoría</a></li>
+          </ul>
+        </li> 
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Apuntes
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item" [routerLink]="['/apuntes/todos']">Todos apuntes</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/apuntes/crear']">Crear apuntes</a></li>
+            <li><a class="dropdown-item" [routerLink]="['/apuntes/actualizar']">Actualizar apuntes</a></li>
+          </ul>
+        </li>             
+      </ul>
+    </div>
+  </div>
+</nav>

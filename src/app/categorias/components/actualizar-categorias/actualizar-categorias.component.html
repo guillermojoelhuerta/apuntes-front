@@ -1,0 +1,16 @@
+<div class="container">              
+    <form [formGroup]="actualizarCategoria">                          
+        <div class="mb-3">          
+            <label for="nombre" class="form-label">Nombre:</label>
+            <input type="text" formControlName="nombre" name="nombre" id="nombre" class="form-control" />
+        </div>                  
+        <div class="mb-3">                  
+            <label for="descripcion" class="form-label">Descripción:</label>            
+            <textarea  formControlName="descripcion" name="descripcion" id="descripcion" class="form-control" style="height: 250px;"></textarea>      
+        </div>    
+        <div class="mb-3">                                                           
+            <button type="submit" class="btn btn-primary" [disabled]="!actualizarCategoria.touched" (click)="enviarCategoria()">Guardar</button>          
+        </div>
+    </form>        
+</div>
+

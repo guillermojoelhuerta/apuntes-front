@@ -1,0 +1,88 @@
+
+
+     
+
+<div *ngIf="message" class="modal" tabindex="-1" role="dialog" style="display:block!important">
+  <div class="modal-dialog custom-alert" role="document">
+    <div class="modal-content">
+      <div *ngIf="message?.type == 'confirm'" class="modal-body">
+        <button (click)="message.exFn()" class="close cerrar" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center confirm-message">{{message.text}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="confirm-button">
+              <a (click)="message.siFn()">
+                <button class="btn btn-yes">Si</button>
+              </a>
+              <a (click)="message.noFn()">
+                <button class="btn btn-no">No</button>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div *ngIf="message?.type != 'confirm'" class="modal-body">
+        <button (click)="message.exFn()" class="close cerrar" type="button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="text-center confirm-message">{{message.text}}</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <p class="confirm-button">
+              <a *ngIf="message?.confirm == 2" (click)="message.exFn()">
+                <button class="btn btn-yes">Aceptar
+                    <i *ngIf="message?.type == 'success'" class="fas fa-check-circle whiteIcon f20"></i>
+                    <i *ngIf="message?.type == 'warning'" class="fas fa-exclamation-triangle whiteIcon f20"></i>
+                    <i *ngIf="message?.type == 'error'" class="fas fa-exclamation whiteIcon f20"></i>
+                </button>
+              </a>
+              <a *ngIf="message?.confirm == 1" (click)="message.siFn()">
+                <button class="btn btn-yes">Aceptar
+                    <i *ngIf="message?.type == 'success'" class="fas fa-check-circle whiteIcon f20"></i>
+                    <i *ngIf="message?.type == 'warning'" class="fas fa-exclamation-triangle whiteIcon f20"></i>
+                    <i *ngIf="message?.type == 'error'" class="fas fa-exclamation whiteIcon f20"></i>
+                </button>
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modal -->
+<!--
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+  Launch static backdrop modal
+</button>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Understood</button>
+      </div>
+    </div>
+  </div>
+</div>-->

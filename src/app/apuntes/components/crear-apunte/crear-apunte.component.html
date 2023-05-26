@@ -1,0 +1,30 @@
+<div class="container">    
+    <form [formGroup]="todosCreate">                    
+        <div class="mb-3">          
+            <label for="titulo" class="form-label">Categoría:</label>
+            <select formControlName="id_categoria" name="id_categoria" id="id_categoria" class="form-control">
+                <option value="" selected>Seleccione:</option>                           
+                <option *ngFor="let cat of catCategorias" [value]="cat.id_categoria">{{cat.nombre}}</option>
+            </select>                                                                              
+        </div>
+        <div class="mb-3">          
+            <label for="titulo" class="form-label">Tema:</label>
+            <input type="text" formControlName="titulo" name="titulo" id="titulo" class="form-control" />
+        </div>
+        <div class="mb-3">                  
+            <label for="contenido" class="form-label">Texto:</label>            
+            <textarea  formControlName="contenido" name="contenido" id="contenido" class="form-control" style="height: 250px;"></textarea>      
+        </div> 
+        <div class="mb-3">                                         
+            <label for="imagen" class="form-label">Imagen:</label>                                             
+            <input type="file" #imageInput name="archivo" multiple class="form-control" (change)="imageChangeEvent($event)"/>     
+        </div>       
+        <div class="mb-3">                                                   
+            <label for="file" class="form-label">File:</label>                                                       
+            <input type="file" #fileInput name="file" multiple class="form-control" (change)="fileChangeEvent($event)"/>     
+        </div>                                                                           
+        <div class="mb-3">                                                  
+            <button type="submit" class="btn btn-primary" [disabled]="todosCreate.invalid" (click)="enviar()">Guardar</button>          
+        </div>
+    </form>        
+</div>

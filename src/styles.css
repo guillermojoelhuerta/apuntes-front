@@ -1,0 +1,58 @@
+/* You can add global styles to this file, and also import other style files */
+.centrarDiv{
+    display: flex; 
+    align-items: center; 
+    justify-content: center;
+}  
+
+.textoLi{
+    margin:5px;
+    display:inline;
+}
+
+.divFormBuscar{
+   margin:10px;    
+   padding: 5px;       
+   text-align: right;   
+}
+
+.textBuscarPor{
+    display:inline-block;
+    margin-right: 5px;
+    width:100px;
+    text-align: right;
+}
+
+.divBuscarPor{
+    display:inline-block;
+    margin-right: 5px;
+    width:110px;
+}           
+
+.divBuscarInput{
+    display:inline-block;
+    margin-right: 5px;
+    width:150px;
+}
+
+.divSearch{
+    display:inline-block;
+    margin-right: 5px;          
+}
+
+.divLimpiar{
+    display:inline-block;
+    margin-right: 5px;  
+}
+
+.divImg{
+    display:inline-block;
+    margin-right: 15px;
+    margin-bottom: 25px;
+}
+
+.divAssetDelete{
+    display:inline-block;
+    margin-right: 15px; 
+    margin-bottom: 25px;
+}                

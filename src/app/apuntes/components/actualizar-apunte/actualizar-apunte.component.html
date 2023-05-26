@@ -1,0 +1,52 @@
+<div class="container">    
+    <form [formGroup]="apunteActualizar">                    
+        <div class="mb-3">          
+            <label for="titulo" class="form-label">Categoría:</label>
+            <select formControlName="id_categoria" name="id_categoria" id="id_categoria" class="form-control">
+                <option value="">Seleccione:</option>                           
+                <option *ngFor="let cat of catCategorias" [value]="cat.id_categoria">{{cat.nombre}}</option>
+            </select>                                                        
+        </div>
+        <div class="mb-3">          
+            <label for="titulo" class="form-label">Tema:</label>
+            <input type="text" formControlName="titulo" name="titulo" id="titulo" class="form-control" />
+        </div>
+        <div class="mb-3">                  
+            <label for="contenido" class="form-label">Texto:</label>            
+            <textarea  formControlName="contenido" name="contenido" id="contenido" class="form-control" style="height: 250px;"></textarea>      
+        </div> 
+        <div class="mb-3">                                         
+            <label for="image" class="form-label">image:</label>                                             
+            <input type="file" #imageInput name="image" multiple class="form-control" (change)="imageChangeEvent($event)"/>     
+        </div>      
+        <div class="mb-3">                                                                       
+            <label for="file" class="form-label">File:</label>                                             
+            <input type="file" #fileInput name="file" multiple class="form-control" (change)="fileChangeEvent($event)"/>     
+        </div>                      
+        <div class="mb-3">                  
+            <label for="archivo" class="form-label">Archivos:</label>
+            <div *ngFor="let img of archivo_usuario">  
+                <div class="divImg">                
+                    <div *ngIf="img['idTypeFile'] === typeFile.IMAGEN">         
+                        <img src="{{url}}images/{{img['nombre_archivo']}}" (click)="descargar('images', img['nombre_archivo'])" width="450" height="250"/>    
+                    </div>                                          
+                    <div *ngIf="img['idTypeFile'] === typeFile.FILE">           
+                        <a href="javascript:" (click)="descargar('files', img['nombre_archivo'])">                      
+                            {{ img['nombre_archivo'] }}   <!--href="{{url}}files/{{img['nombre_archivo']}}"-->
+                        </a>                                                              
+                    </div>  
+                </div>                      
+                <div class="divAssetDelete">                                                                                       
+                    <a href="javascript:" (click)="deleteFile(img)" alt="Eliminar">
+                        <img src="assets/eliminar.png" alt="Actualizar"  width="25" height="25"/>           
+                    </a>
+                </div>
+            </div>                                                                      
+        </div>                              
+        <div class="mb-3">                                                
+            <button type="submit" class="btn btn-primary" [disabled]="apunteActualizar.invalid" (click)="enviar()">Guardar</button>          
+        </div>                                 
+    </form>                 
+    <app-confirm-dialog></app-confirm-dialog>   
+</div>
+
