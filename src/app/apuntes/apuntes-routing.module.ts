@@ -3,29 +3,29 @@ import { RouterModule, Routes } from '@angular/router';
 import { TodosApuntesComponent } from './components/todos-apuntes/todos-apuntes.component';
 import { CrearApunteComponent } from './components/crear-apunte/crear-apunte.component';
 import { ActualizarApunteComponent } from './components/actualizar-apunte/actualizar-apunte.component';
-import { AdminGuard } from '../guards/admin.guard';                 
-      
-const routes: Routes = [  
+import { AdminGuard } from '@app/core/guards/admin.guard';
+
+const routes: Routes = [
   {
     path: 'todos',
     component: TodosApuntesComponent,
     data: {
-      breadcrumb: ''      
+      breadcrumb: ''
     }
   },
-  {                               
+  {
     path: 'crear',
     canActivate:[AdminGuard],
     component: CrearApunteComponent,
     data: {
-      breadcrumb: ''      
+      breadcrumb: ''
     }
   },
-  {     
+  {
     path: 'actualizar/:id',
     component: ActualizarApunteComponent,
     data: {
-      breadcrumb: ''      
+      breadcrumb: ''
     }
   }
 ];

@@ -1,5 +1,5 @@
 /* To learn more about this file see: https://angular.io/config/tsconfig. */
-{   
+{
   "compileOnSave": false,
   "compilerOptions": {
     "baseUrl": "./",
@@ -7,8 +7,8 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "strictPropertyInitialization": false,
-    "suppressImplicitAnyIndexErrors": true, //Para poder acceder a los valores de un object en el template      
-    "noImplicitOverride": true,     
+    "suppressImplicitAnyIndexErrors": true, //Para poder acceder a los valores de un object en el template
+    "noImplicitOverride": true,
     "noPropertyAccessFromIndexSignature": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
@@ -23,7 +23,11 @@
     "lib": [
       "es2020",
       "dom"
-    ]
+    ],
+    "paths":{
+      "@app/*":["src/app/*"],
+      "@app/environments/*":["src/environments/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

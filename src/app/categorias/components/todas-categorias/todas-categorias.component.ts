@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpParams } from '@angular/common/http';            
-import { CategoriasService } from '../../../core/services/categorias.service';
-import { Categoria } from '../../../core/models/Categoria.model';
-import { Paginacion } from 'src/app/core/models/Paginacion.model';
+import { HttpParams } from '@angular/common/http';
+import { CategoriasService } from '@app/shared/services/categorias.service';
+import { Categoria } from '@app/core/models/Categoria.model';
+import { Paginacion } from '@app/core/models/Paginacion.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -11,17 +11,17 @@ import Swal from 'sweetalert2';
   styleUrls: ['./todas-categorias.component.css']
 })
 export class TodasCategoriasComponent implements OnInit {
-  categorias: Categoria[] = [];    
-  itemsPerPage = 5;                    
+  categorias: Categoria[] = [];
+  itemsPerPage = 5;
   sortBy = "id_categoria,asc";
   paginacion: Paginacion = {
     pagina: 0,
     itemsPerPage: this.itemsPerPage,
     totalElements: 0,
-    totalPages: 0, 
-    sortBy: this.sortBy 
-  };      
-  constructor(private categoriasService: CategoriasService) {  
+    totalPages: 0,
+    sortBy: this.sortBy
+  };
+  constructor(private categoriasService: CategoriasService) {
   }
 
   ngOnInit(): void {
@@ -30,61 +30,61 @@ export class TodasCategoriasComponent implements OnInit {
 
   paginaPag(value: number){
     if(value < this.paginacion.totalPages){
-      this.paginacion.pagina = value;          
-      this.datosPaginados();                 
-    }  
+      this.paginacion.pagina = value;
+      this.datosPaginados();
+    }
   }
-          
+
   datosPaginados(){
     const queryParams = this.queryParams(
-      this.paginacion.pagina, 
-      this.paginacion.itemsPerPage, 
+      this.paginacion.pagina,
+      this.paginacion.itemsPerPage,
       this.sortBy
-    );           
+    );
 
     this.categoriasService.getCategorias(queryParams).subscribe((res: any) =>{
-      this.categorias = res.content;                        
+      this.categorias = res.content;
       this.paginacion = {
-        pagina: res.number,       
+        pagina: res.number,
         itemsPerPage: this.itemsPerPage,
         totalElements: res.totalElements,
-        totalPages: res.totalPages, 
+        totalPages: res.totalPages,
         sortBy: this.sortBy
-      }                                                        
-    });  
-  }           
+      }
+    });
+  }
 
   queryParams(page:number, size:number, sortBy:string){
     let queryParams = new HttpParams();
     queryParams = queryParams.append("page",page);
     queryParams = queryParams.append("size",size);
-    queryParams = queryParams.append("sortBy",sortBy); 
+    queryParams = queryParams.append("sortBy",sortBy);
     return queryParams;
   }
 
   eliminarCategoria(indice : number, categoria : Categoria){
     const id_categoria =  this.categorias[indice]["id_categoria"] as number;
-    const nombre_categoria = this.categorias[indice]["nombre"];                   
-       
+    const nombre_categoria = this.categorias[indice]["nombre"];
+
       Swal.fire({
         title: 'Estás seguro de eliminar?',
         text: "No podras revertir la situación!",
-        icon: 'warning',            
+        icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
         cancelButtonColor: '#d33',
-        confirmButtonText: 'Aceptar'    
+        confirmButtonText: 'Aceptar'
       }).then((result) => {
         if (result.isConfirmed) {
           this.categoriasService.deleteCategoria(id_categoria).subscribe(res => {
-            this.categorias.splice(indice, 1);    
+            this.categorias.splice(indice, 1);
             Swal.fire(
-              'Deleted!',     
+              'Deleted!',
               'El registro ha sido eliminado.',
               'success'
-            );            
+            );
           });
         }
-      })                            
-  }     
+      })
+  }
 }

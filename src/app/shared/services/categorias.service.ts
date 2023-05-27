@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse, HttpParams } from '@angular/common/http';
-import { environment } from '../../../environments/environment'; 
-import { Categoria } from '../models/Categoria.model'; 
+import { environment } from '@app/environments/environment';
+import { Categoria } from '@app/core/models/Categoria.model';
 
 import { from, Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -10,8 +10,8 @@ import { map, catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class CategoriasService {
-  private headers: any; 
-  constructor(private http: HttpClient) { 
+  private headers: any;
+  constructor(private http: HttpClient) {
     this.headers = {};
   }
 
@@ -25,49 +25,49 @@ export class CategoriasService {
     return headers;
   }
 
-  postCategoria(categoria: Categoria): Observable<Categoria> {      
+  postCategoria(categoria: Categoria): Observable<Categoria> {
     //return this.http.post(`${environment.url_api}/categorias/guardar-categoria`, categoria);
     return this.http.post(`${environment.url_api}/categorias/guardar-categoria`, categoria).pipe(
       map((data: any) => {
-        return data;                
-      }), catchError(this.handleError)      
-    );    
-  }                          
+        return data;
+      }), catchError(this.handleError)
+    );
+  }
 
-  getCategorias(queryParams: HttpParams): Observable<Categoria[]> {                             
+  getCategorias(queryParams: HttpParams): Observable<Categoria[]> {
     //return this.http.get<Categoria[]>(`${environment.url_api}/categorias/get-categorias`).pipe(catchError(this.handleError));
     return this.http.get<Categoria[]>(`${environment.url_api}/categorias/get-categorias`,{params:queryParams}).pipe(
       map((data: Categoria[]) => {
         return data;
-      }), catchError(this.handleError)      
+      }), catchError(this.handleError)
     );
-  } 
-  
-  getCategoriasList(): Observable<Categoria[]> {                             
+  }
+
+  getCategoriasList(): Observable<Categoria[]> {
     //return this.http.get<Categoria[]>(`${environment.url_api}/categorias/get-categorias`).pipe(catchError(this.handleError));
     return this.http.get<Categoria[]>(`${environment.url_api}/categorias/get-categorias-list`).pipe(
       map((data: Categoria[]) => {
         return data;
-      }), catchError(this.handleError)      
+      }), catchError(this.handleError)
     );
-  }                     
+  }
 
   getCategoriasById(id: number){
     return this.http.get<Categoria>(`${environment.url_api}/categorias/get-categoria-by-id/`+id);
-  }   
+  }
 
-  updateCategoria(categoria: Categoria): Observable<Categoria> {      
+  updateCategoria(categoria: Categoria): Observable<Categoria> {
     return this.http.put(`${environment.url_api}/categorias/update-categoria`, categoria).pipe(
       map((data: any) => {
-        return data;                
-      }), catchError(this.handleError)      
-    );                        
-  }   
-      
+        return data;
+      }), catchError(this.handleError)
+    );
+  }
+
   deleteCategoria(id: number){
     return this.http.delete(`${environment.url_api}/categorias/delete-categoria-by-id/`+id,
-    { responseType: 'json'});                   
-  }                          
+    { responseType: 'json'});
+  }
 
   handleError(error:any) {
     let errorMessage = '';
@@ -81,6 +81,6 @@ export class CategoriasService {
     console.log(errorMessage);
     return throwError(() => {
         return errorMessage;
-    });           
+    });
   }
-}         
+}

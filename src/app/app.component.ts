@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { StorageService } from './core/services/storage.service';
-import { LoginService } from './core/services/login.service';
+import { StorageService } from '@app/shared/services/storage.service';
+import { LoginService } from '@app/shared/services/login.service';
 
 
 @Component({

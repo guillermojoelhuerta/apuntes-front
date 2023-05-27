@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http'; 
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { from, Observable, throwError    } from 'rxjs';
-import { environment } from '../../../environments/environment'; 
-import { Apunte } from '../models/Apunte.model';
+import { environment } from '@app/environments/environment';
+import { Apunte } from '@app/core/models/Apunte.model';
 import { map, catchError } from 'rxjs/operators';
-import Swal from 'sweetalert2'; 
-      
+import Swal from 'sweetalert2';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,66 +13,66 @@ export class ApunteService {
 
   constructor(private http: HttpClient) { }
 
-  crearApunte(apunte: any){      
+  crearApunte(apunte: any){
     return this.http.post<Apunte>(`${environment.url_api}/apuntes/save-apunte`,apunte);
   }
 
-  getTodos(queryParams: HttpParams): Observable<Apunte[]>{     
+  getTodos(queryParams: HttpParams): Observable<Apunte[]>{
     return this.http.get<Apunte[]>(`${environment.url_api}/apuntes/get-apuntes`,{params:queryParams});
-  }   
-  
-  getBusqueda(body:any){ 
-    return this.http.post(        
+  }
+
+  getBusqueda(body:any){
+    return this.http.post(
       `${environment.url_api}/apuntes/get-busqueda`,
       body
-    );                     
-  }                      
+    );
+  }
 
-  getById(id: number){        
+  getById(id: number){
     return this.http.get<Apunte>(`${environment.url_api}/apuntes/get-apunte-by-id/`+id);
   }
-        
-  update(apunte:any){           
+
+  update(apunte:any){
     return this.http.put<Apunte>(`${environment.url_api}/apuntes/update-apunte`, apunte);
-  } 
-            
-  eliminarApunte(id: number){           
+  }
+
+  eliminarApunte(id: number){
     return this.http.delete(`${environment.url_api}/apuntes/delete-apunte/`+id, {responseType:'text'});
   }
 
-  eliminarArchivo(archivo_usuario: any){           
-    return this.http.post(        
-      `${environment.url_api}/apuntes/delete-archivo`,archivo_usuario,                   
+  eliminarArchivo(archivo_usuario: any){
+    return this.http.post(
+      `${environment.url_api}/apuntes/delete-archivo`,archivo_usuario,
       {responseType:'text'}
     );
-  }       
-  
-  downloadFile(body:any){                        
+  }
+
+  downloadFile(body:any){
     return this.http.post(`${environment.url_api}/apuntes/download-file`, body, {responseType: 'blob'}).pipe(
-        map((res: Blob) => {         
-          const filename = body.filename;                                            
+        map((res: Blob) => {
+          const filename = body.filename;
           let a = document.createElement("a");
-          a.href = URL.createObjectURL(res); 
+          a.href = URL.createObjectURL(res);
           a.setAttribute("download", filename);
-          a.click();                                   
+          a.click();
         }), catchError((error:any) => {
-            let errorMessage = ''; 
-            error.text().then((text:any) => {    
-            const err = JSON.parse(text);             
+            let errorMessage = '';
+            error.text().then((text:any) => {
+            const err = JSON.parse(text);
             console.log(err["errorMessage"]);
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
               text: err["errorMessage"]
             })
-          });    
+          });
           return throwError(() => {
-            return "Error no se puede descargar el archivo";      
-          });      
-        })   
+            return "Error no se puede descargar el archivo";
+          });
+        })
       );
-  } 
-                   
+  }
+
   handleError(error:any) {
     let errorMessage = '';
     if (error.error instanceof ErrorEvent) {
@@ -85,7 +85,7 @@ export class ApunteService {
     console.log(errorMessage);
     return throwError(() => {
         return errorMessage;
-    });           
+    });
   }
 
 }
