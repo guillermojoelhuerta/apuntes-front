@@ -11,7 +11,7 @@ import { mergeMap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import Swal from 'sweetalert2';
 import { environment } from '@app/environments/environment';
-import { OrdenamientoService } from '@app/shared/components/ordenamiento/ordenamiento.service';
+import { OrdenamientoService } from '@app/shared/services/ordenamiento.service';
 import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 
 @Component({

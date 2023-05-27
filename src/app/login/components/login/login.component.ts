@@ -42,11 +42,9 @@ export class LoginComponent implements OnInit {
       this.storage.storeKey('rol', response.authorities[0].authority);
       this.storage.storeKey('isLogged', true);
       this.loginService.entrar();
-
       this.store.dispatch(fromActions.idUsuarioAction({ id_usuario: 100 }));
       this.store.dispatch(fromActions.nombreUsuarioAction({ nombre: response.nombreUsuario }));
       this.store.dispatch(fromActions.rolUsuarioAction({ rol: response.authorities[0].authority }));
-
       this.store.subscribe(state => {
         console.log("state = ",state);
       });
