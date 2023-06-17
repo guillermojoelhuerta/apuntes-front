@@ -4,6 +4,7 @@ import { CategoriasService } from '@app/shared/services/categorias.service';
 import { Categoria } from '@app/core/models/Categoria.model';
 import { ApunteService } from '@app/shared/services/apunte.service';
 import { Apunte } from '@app/core/models/Apunte.model';
+import { ErrorResponse } from '@app/core/models/ErrorResponse.model';
 import { StorageService } from '@app/shared/services/storage.service';
 import Swal from 'sweetalert2';
 
@@ -44,10 +45,17 @@ export class CrearApunteComponent implements OnInit {
 
     let id_usuario = Number(this.storage.getKey('id_usuario'));
 
+    /*
     let apunte : Apunte = {
       id_categoria: this.todosCreate.value.id_categoria,
       titulo: this.todosCreate.value.titulo,
       contenido:this.todosCreate.value.contenido,
+      id_usuario: id_usuario
+    };*/
+    let apunte : Apunte = {
+      id_categoria: this.todosCreate.value.id_categoria,
+      titulo:'',
+      contenido:'',
       id_usuario: id_usuario
     };
 
@@ -74,7 +82,13 @@ export class CrearApunteComponent implements OnInit {
         this.todosCreate.controls['id_categoria'].setValue('');
         this.imageInput.nativeElement.value = '';
         this.fileInput.nativeElement.value = '';
-    });
+    },((error: ErrorResponse)=>{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: error.errorMessage
+      });
+    }));
   }
 
   imageChangeEvent(event: any){

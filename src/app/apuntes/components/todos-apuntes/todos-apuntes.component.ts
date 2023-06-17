@@ -6,6 +6,7 @@ import { ApunteService } from '@app/shared/services/apunte.service';
 import { Apunte } from '@app/core/models/Apunte.model';
 import { ApuntesTodosBusqueda } from '@app/core/models/ApuntesTodosBusqueda.model';
 import { Paginacion } from '@app/core/models/Paginacion.model';
+import { ErrorResponse } from '@app/core/models/ErrorResponse.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -112,7 +113,13 @@ export class TodosApuntesComponent implements OnInit {
         totalPages: res.totalPages,
         sortBy: this.sortBy
       };
-    });
+    },((error : ErrorResponse) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: error.errorMessage
+        });
+    }));
   }
 
   queryParams(page:number, size:number, sortBy:string){
